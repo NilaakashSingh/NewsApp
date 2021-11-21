@@ -76,8 +76,7 @@ class HomeViewModelTests: XCTestCase {
     func testSpecialReportBodyDataSourceCase() {
         // Check for some articles in special report
         viewModel = HomeViewModel()
-        let article = Article(title: "Top News", description: nil, url: nil, headlineImageURL: nil, videoType: nil, videoID: nil, videoURL: nil, videoThumbnail: nil, newsKeywords: nil, authors: nil, instruments: nil, tags: nil, categories: nil, regionCode: nil, displayTimestamp: nil, lastUpdatedTimestamp: nil)
-        let news = News(breakingNews: "Breaking News", topNews: nil, dailyBriefings: ["EU" : nil], technicalAnalysis: nil, specialReport: [article, article])
+        let news = News(breakingNews: "Breaking News", topNews: nil, dailyBriefings: ["EU" : nil], technicalAnalysis: nil, specialReport: [TestData.article1, TestData.article2])
         viewModel?.news = news
         viewModel?.selectedSegment = .specialReport
         XCTAssertEqual(viewModel?.bodyDataSource().count, 2)
@@ -88,10 +87,8 @@ class HomeViewModelTests: XCTestCase {
 /// Success Mock class for APIServiceProtocol
 class MockApiServiceSuccess: APIServiceProtocol {
     func get<T>(url: URL, type: T.Type, completion: @escaping (Result<T, Error>) -> Void) where T : Decodable, T : Encodable {
-        // The other way to populate data is via local json for quick concept demo, I took making instance of Recipe objects approach
-        let article = Article(title: "Top News", description: nil, url: nil, headlineImageURL: nil, videoType: nil, videoID: nil, videoURL: nil, videoThumbnail: nil, newsKeywords: nil, authors: nil, instruments: nil, tags: nil, categories: nil, regionCode: nil, displayTimestamp: nil, lastUpdatedTimestamp: nil)
-        
-        let news = News(breakingNews: "Breaking News", topNews: [article, article], dailyBriefings: ["EU" : nil], technicalAnalysis: nil, specialReport: nil)
+        // The other way to populate data is via local json for quick concept demo, I took making instance of article objects approach        
+        let news = News(breakingNews: "Breaking News", topNews: [TestData.article1, TestData.article2], dailyBriefings: ["EU" : [TestData.article1]], technicalAnalysis: nil, specialReport: nil)
         
         let result = news.self
         completion(.success(result as! T))

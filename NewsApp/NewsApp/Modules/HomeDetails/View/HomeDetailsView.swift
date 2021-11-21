@@ -59,7 +59,7 @@ struct HomeDetailsView: View {
             }
             
             if !viewModel.allAuthors().isEmpty {
-                Text("Authors: \(viewModel.allAuthors())")
+                Text("Author Name: \(viewModel.allAuthors())")
                     .padding(.top, 20)
             }
             
@@ -126,25 +126,9 @@ extension HomeDetailsView {
     }
 }
 
+// MARK: - View Preview
 struct HomeDetailsView_Previews: PreviewProvider {
-    
-    static let article = Article(title: "GBP/USD Outlook - Sterling Propped Up by Data But US Dollar Strength Controls Cable",
-                                 description: "Positive UK retail sales data are helping Sterling push forward but the US dollar is running the show against a range of USD-pairs, including GBP/USD.", url: "https://www.dailyfx.com/forex/market_alert/2021/11/19/GBPUSD-Outlook-Sterling-Propped-Up-by-Data-But-US-Dollar-Strength-Controls-Cable.html",
-                                 headlineImageURL: "https://a.c-dn.net/b/25EjrE/headline_UK.jpg",
-                                 videoType: nil,
-                                 videoID: nil,
-                                 videoURL: nil,
-                                 videoThumbnail: nil,
-                                 newsKeywords: "gbp/usd, sterling, us dollar",
-                                 authors: [Authors(name: "Nick Cawley")],
-                                 instruments: nil,
-                                 tags: ["gbp/usd", "us dollar", "sterling"],
-                                 categories: ["forex", "market_alert"],
-                                 regionCode: nil,
-                                 displayTimestamp: nil,
-                                 lastUpdatedTimestamp: nil)
-    
     static var previews: some View {
-        HomeDetailsView(viewModel: HomeDetailViewModel(article: article))
+        HomeDetailsView(viewModel: HomeDetailViewModel(article: TestData.article1))
     }
 }

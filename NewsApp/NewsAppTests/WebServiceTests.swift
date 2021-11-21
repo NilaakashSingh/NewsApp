@@ -16,7 +16,7 @@ class WebServiceTests: XCTestCase {
         // Given webservice
         let webServiceInstance = WebService()
 
-        // When fetch all recipes
+        // When fetch all news
         let expect = XCTestExpectation(description: "callback")
         
         guard let url = URL(string: LinkConstant.newsPath) else {
